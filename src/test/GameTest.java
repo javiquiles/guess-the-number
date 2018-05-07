@@ -15,6 +15,7 @@ public class GameTest {
 		
 		assertEquals(1, game.getMin());
 		assertEquals(100, game.getMax());
+		assertEquals(1, game.getCounter());
 		assertEquals(10, game.getAttempts());
 		assertTrue(game.getSecretNumber() > 0 && game.getSecretNumber() <= 100);
 	}
@@ -25,6 +26,7 @@ public class GameTest {
 		
 		assertEquals(1, game.getMin());
 		assertEquals(100, game.getMax());
+		assertEquals(1, game.getCounter());
 		assertEquals(7, game.getAttempts());
 		assertTrue(game.getSecretNumber() > 0 && game.getSecretNumber() <= 100);
 	}
@@ -43,10 +45,14 @@ public class GameTest {
 		Game game = new Game(0);
 		
 		game.addAttempt(); //Intentos = 1.
-		assertTrue(game.checkAttempts()); //Debería ser verdadero.
+		assertEquals(0, game.getCounter());
+		assertEquals(1, game.getAttempts());
+		assertTrue(game.checkAttempts());
 		
 		game.subtractAttempt(); //Intentos = 0.
-		assertFalse(game.checkAttempts()); //Debería ser falso.
+		assertEquals(1, game.getCounter());
+		assertEquals(0, game.getAttempts());
+		assertFalse(game.checkAttempts());
 	}
 	
 	@Test
